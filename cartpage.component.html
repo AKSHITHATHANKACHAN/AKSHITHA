@@ -1,0 +1,44 @@
+<body>
+  <div style="margin-top: 10 px; "><h2 style="display: 20px;margin-left:50% ">Your Cart Item</h2>
+    <button style="margin-left: 80%;" (click)="Back()"class="btn btn-primary ">Back
+      <router-outlet></router-outlet>
+    </button>
+  </div>
+  <div class="row" style="margin-left: 20px; margin-top:10px;">
+    <div class="col-md-4"  *ngFor="let item of datacart">
+      <p>{{item.fk_product_id__vchr_name}}</p>
+      <p>$ {{item.fk_product_id__dbl_rate}}</p>
+      <input type="number" [(ngModel)]="item.int_qty" (change)="added(item)" >
+      <button (click)="remove(item.pk_bint_id)" class="btn btn-primary " style="margin-left: 10px;">Remove</button>
+    </div>
+  </div>
+
+  <div class="row" style="margin-left:30px; margin-top:40px;"><h3 style="font-size:20px;"> Total Ammount :
+  </h3>
+  </div>
+    <div class="row">
+      <p style="margin-left: 35px;" class="col-md-6">Total MRP  :     </p>
+      <p style="margin-right: 10px;" class="col_md-6">$ {{total[0]['total_amount']}}</p>
+    </div>
+    <div class="row">
+      <p style="margin-left: 35px;" class="col-md-6">Discount  :     </p>
+      <p style="margin-right: 10px;" class="col_md-6"> -$ {{total[0]['discount']}}</p>
+    </div>
+    <div class="row">
+      <p style="margin-left: 35px;" class="col-md-6" *ngIf="bln_gift">Gift Wrap      </p>
+      <p style="margin-right: 10px;" class="col_md-6" *ngIf="bln_gift">$ {{total[0]['gift']}}</p>
+    </div>
+    <div class="row">
+      <p style="margin-left: 35px;" class="col-md-6">Subtotal  :     </p>
+      <p style="margin-right: 10px;" class="col_md-6">$ {{total[0]['subtotal']}}</p>
+    </div>
+    <div class="row">
+      <p style="margin-left: 35px;" class="col-md-6">Shipping Charge  :     </p>
+      <p style="margin-right: 10px;" class="col_md-6">$ {{total[0]['shipping_charge']}}</p>
+    </div>
+    <div class="row">
+      <p style="margin-left: 35px; font-size:20px" class="col-md-6">Order Total  :     </p>
+      <p style="margin-right: 10px;" class="col_md-6">$ {{total[0]['total']}}</p>
+    </div>
+
+</body>
